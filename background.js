@@ -32,24 +32,16 @@ const removeListeners = () => {
 };
 
 chrome.runtime.onInstalled.addListener(function() {
-  chrome.storage.local.set({isExtensionEnabled: true}, function() {
-    console.log('isExtensionEnabled is set to ' + true);
-  });
+  chrome.storage.local.set({isExtensionEnabled: true});
   addListeners();
 });
 
 chrome.runtime.onMessage.addListener(function(msg) {
-  isExtensionEnabled = msg.isExtensionEnabled;
-  if (isExtensionEnabled) {
-    chrome.storage.local.set({isExtensionEnabled: true}, function() {
-      console.log('isExtensionEnabled is set to ' + true);
-    });
+  chrome.storage.local.set({isExtensionEnabled: msg.isExtensionEnabled});
+  if (msg.isExtensionEnabled) {
     addListeners();
   }
   else {
-    chrome.storage.local.set({isExtensionEnabled: false}, function() {
-      console.log('isExtensionEnabled is set to ' + false);
-    });
     removeListeners();
   }
 });
