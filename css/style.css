@@ -1,0 +1,60 @@
+body {
+  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 100%;
+}
+
+.main {
+  width: 300px;
+  max-height: 600px;
+  padding: 15px;
+  border: 2px solid black;
+  margin: auto;
+}
+
+.heading {
+  vertical-align: middle;
+  display: inline-block;
+  width: 100%;
+}
+
+.title {
+  float: left;
+  margin: 0;
+}
+
+.toggle-wrapper {
+  float: right;
+}
+
+.switch {
+  float: right;
+  border-radius: 25px;
+  padding: 3px;
+  cursor: pointer;
+  background-color: #80c75f;
+}
+
+#stop-button {
+  height: 0;
+  width: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+.toggle {
+  vertical-align: middle;
+  content: "";
+  height: 18px;
+  width: 18px;
+  border-radius: 9px;
+  background-color: black;
+  margin-left: 0px;
+  margin-right: 20px;
+  display: inline-block;
+}
+
+#stop-button:checked + .toggle {
+  margin-left: 20px;
+  margin-right: 0px;
+}
