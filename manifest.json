@@ -1,29 +1,23 @@
 {
-  "name": "Article Reader",
+  "name": "Network Monitor",
   "version": "1.0",
-  "description": "Easy Online Article Reader",
+  "description": "Network Monitor",
+  "manifest_version": 2,
   "permissions": [
     "webRequest",
-    "notifications",
-    "storage"
+    "notifications"
   ],
   "browser_action": {
     "default_popup": "popup.html",
     "default_icon": {
-      "16": "images/get_started16.png",
-      "32": "images/get_started32.png",
-      "48": "images/get_started48.png",
-      "128": "images/get_started128.png"
-    }
+      "128": "network-monitor.png"
+    },
+    "default_title": "Network Monitor"
   },
   "icons": {
-    "16": "images/get_started16.png",
-    "32": "images/get_started32.png",
-    "48": "images/get_started48.png",
-    "128": "images/get_started128.png"
+    "128": "network-monitor.png"
   },
   "background": {
     "scripts": ["background.js"]
-  },
-  "manifest_version": 2
+  }
 }

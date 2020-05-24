@@ -13,7 +13,7 @@ function setStyling (inputChecked) {
 }
 
 stopButton.onclick = function(element) {
-  chrome.runtime.sendMessage("Hi BackGround");
-  setStyling(element.target.checked);
-  chrome.storage.local.set({ 'isExtensionEnabled': element.target.checked });
+  const msg = {isExtensionEnabled: element.target.checked };
+  setStyling(msg.isExtensionEnabled);
+  chrome.runtime.sendMessage(msg);
 };

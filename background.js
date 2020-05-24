@@ -6,17 +6,11 @@
 
 let isExtensionEnabled = true;
 
-alert("This is the background script");
-
 chrome.runtime.onInstalled.addListener(function() {
-  alert("Extension installed");
   isExtensionEnabled = true;
 });
 
-chrome.storage.local.get('isExtensionEnabled', (response) => {
-
-});
-
 chrome.runtime.onMessage.addListener(function(msg) {
-  alert("message recieved by background" + msg);
+  isExtensionEnabled = msg.isExtensionEnabled;
+  console.log(isExtensionEnabled);
 });
