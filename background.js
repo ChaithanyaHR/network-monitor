@@ -10,7 +10,6 @@ const onError = ({tabId, url, error}) => {
     }
     errorsList[tabId].push({url, error});
     chrome.storage.local.set({errorsList});
-    console.log(errorsList);
   });
 };
 
@@ -38,7 +37,6 @@ chrome.runtime.onMessage.addListener(function({isExtensionEnabled}) {
     addListeners();
   }
   else {
-    chrome.storage.local.set({errorsList: {}});
     removeListeners();
   }
 });

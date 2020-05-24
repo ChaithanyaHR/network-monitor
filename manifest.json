@@ -6,7 +6,6 @@
   "permissions": [
     "<all_urls>",
     "webRequest",
-    "notifications",
     "storage"
   ],
   "browser_action": {
