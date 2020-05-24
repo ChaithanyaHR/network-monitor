@@ -1,16 +1,55 @@
-// Copyright 2018 The Chromium Authors. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 'use strict';
 
-let isExtensionEnabled = true;
+const filters = {urls: ["<all_urls>"]};
+const extraInfo = [];
+
+const onComplete = (response) => {
+  if (response.statusCode === 304) {
+    alert(response.statusCode);
+  }
+};
+
+const onError = (response) => {
+  alert("Error", response.error);
+};
+
+const addListeners = () => {
+  chrome.webRequest.onCompleted.addListener(
+    onComplete,
+    filters,
+    extraInfo,
+  ); 
+  chrome.webRequest.onErrorOccurred.addListener(
+    onError,
+    filters,
+    extraInfo,
+  );
+};
+
+const removeListeners = () => {
+  chrome.webRequest.onCompleted.removeListener(onComplete);
+  chrome.webRequest.onErrorOccurred.removeListener(onError);
+};
 
 chrome.runtime.onInstalled.addListener(function() {
-  isExtensionEnabled = true;
+  chrome.storage.local.set({isExtensionEnabled: true}, function() {
+    console.log('isExtensionEnabled is set to ' + true);
+  });
+  addListeners();
 });
 
 chrome.runtime.onMessage.addListener(function(msg) {
   isExtensionEnabled = msg.isExtensionEnabled;
-  console.log(isExtensionEnabled);
+  if (isExtensionEnabled) {
+    chrome.storage.local.set({isExtensionEnabled: true}, function() {
+      console.log('isExtensionEnabled is set to ' + true);
+    });
+    addListeners();
+  }
+  else {
+    chrome.storage.local.set({isExtensionEnabled: false}, function() {
+      console.log('isExtensionEnabled is set to ' + false);
+    });
+    removeListeners();
+  }
 });

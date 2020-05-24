@@ -4,8 +4,10 @@
   "description": "Network Monitor",
   "manifest_version": 2,
   "permissions": [
+    "<all_urls>",
     "webRequest",
-    "notifications"
+    "notifications",
+    "storage"
   ],
   "browser_action": {
     "default_popup": "popup.html",
