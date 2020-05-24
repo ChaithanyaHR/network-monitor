@@ -3,11 +3,14 @@
 const filters = {urls: ["<all_urls>"]};
 const extraInfo = [];
 
-const onError = (response) => {
-  chrome.storage.local.get(['errorsList'], function(result) {
-    result.errorsList.push({url: response.url, error: response.error});
-    chrome.storage.local.set({errorsList: result.errorsList});
-    console.log(result.errorsList);
+const onError = ({tabId, url, error}) => {
+  chrome.storage.local.get(['errorsList'], function({errorsList}) {
+    if (!errorsList[tabId]) {
+      errorsList[tabId] = [];
+    }
+    errorsList[tabId].push({url, error});
+    chrome.storage.local.set({errorsList});
+    console.log(errorsList);
   });
 };
 
@@ -25,17 +28,17 @@ const removeListeners = () => {
 
 chrome.runtime.onInstalled.addListener(function() {
   chrome.storage.local.set({isExtensionEnabled: true});
-  chrome.storage.local.set({errorsList: []});
+  chrome.storage.local.set({errorsList: {}});
   addListeners();
 });
 
-chrome.runtime.onMessage.addListener(function(msg) {
-  chrome.storage.local.set({isExtensionEnabled: msg.isExtensionEnabled});
-  if (msg.isExtensionEnabled) {
+chrome.runtime.onMessage.addListener(function({isExtensionEnabled}) {
+  chrome.storage.local.set({isExtensionEnabled});
+  if (isExtensionEnabled) {
     addListeners();
   }
   else {
-    chrome.storage.local.set({errorsList: []});
+    chrome.storage.local.set({errorsList: {}});
     removeListeners();
   }
 });
