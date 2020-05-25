@@ -3,6 +3,8 @@
 const filters = {urls: ["<all_urls>"]};
 const extraInfo = [];
 
+chrome.browserAction.setBadgeBackgroundColor({color: 'black'});
+
 const onError = ({tabId, url, error}) => {
   chrome.storage.local.get(['errorsList'], function({errorsList}) {
     if (!errorsList[tabId]) {
@@ -10,6 +12,7 @@ const onError = ({tabId, url, error}) => {
     }
     errorsList[tabId].push({url, error});
     chrome.storage.local.set({errorsList});
+    chrome.browserAction.setBadgeText({text: errorsList[tabId].length.toString(), tabId});
   });
 };
 
@@ -48,4 +51,4 @@ chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
       chrome.storage.local.set({errorsList});
     });
   }
-})
+});
