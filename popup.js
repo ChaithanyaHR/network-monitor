@@ -35,7 +35,7 @@ stopButton.onclick = function(element) {
 };
 
 function setStyling (isExtensionEnabled) {
-  const switch1 = document.getElementsByClassName('switch')[0];
+  const switch1 = document.getElementsByClassName('toggle-label')[0];
   if (isExtensionEnabled) {
     switch1.style.backgroundColor = "#80c75f";
   }
@@ -48,10 +48,20 @@ const createTable = (errors) => {
   errors = errors.forEach(({url, error}) => {
     let table = document.getElementsByTagName("table")[0];
     let row = table.insertRow();
+
     let urlCell = row.insertCell();
-    urlCell.textContent = url;
+    let urlDiv = document.createElement('div');
+    urlDiv.className = 'url-div';
+    urlDiv.innerHTML = url;
+    urlCell.className = "url-column";
+    urlCell.appendChild(urlDiv);
+
     let errorCell = row.insertCell();
-    errorCell.textContent = error;
+    let errorDiv = document.createElement('div');
+    errorDiv.className = 'error-div';
+    errorDiv.innerHTML = error;
+    errorCell.className = "error-column";
+    errorCell.appendChild(errorDiv);
   });
 };
 

@@ -1,36 +1,34 @@
 body {
   font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-  font-size: 100%;
+  font-size: 12px;
 }
 
-.table {
-  visibility: hidden;
-}
-
-.main {
-  width: 500px;
+.card {
+  width: 300px;
   max-height: 600px;
-  padding: 15px;
-  border: 2px solid black;
   margin: auto;
+  padding: 3px;
 }
 
-.heading {
+.header-container {
   vertical-align: middle;
   display: inline-block;
   width: 100%;
 }
 
-.title {
+h3 {
+  padding-top: 3px;
   float: left;
   margin: 0;
+  font-size: 16px;
+  font-weight: bold;
 }
 
 .toggle-wrapper {
   float: right;
 }
 
-.switch {
+.toggle-label {
   float: right;
   border-radius: 25px;
   padding: 3px;
@@ -46,7 +44,7 @@ body {
   opacity: 0;
 }
 
-.toggle {
+.toggle-button {
   vertical-align: middle;
   content: "";
   height: 18px;
@@ -58,7 +56,50 @@ body {
   display: inline-block;
 }
 
-#stop-button:checked + .toggle {
+#stop-button:checked + .toggle-button {
   margin-left: 20px;
   margin-right: 0px;
+}
+
+.error-table {
+  width: 100%;
+  padding-top: 10px;
+}
+
+table {
+  padding: 5px;
+  table-layout:fixed;
+  text-align: left;
+  width: 100%;
+  visibility: visible;
+  border-collapse: collapse;
+  border: 1px solid rgba(128, 126, 122, 0.2);
+}
+
+.error-header,.url-header{
+  background-color: #ea6153;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+th,td {
+  padding: 5px;
+}
+
+.url-header,.url-column {
+  width: 65%;
+}
+
+.error-header,.error-column {
+  width: 35%;
+}
+
+.error-column {
+  background-color: rgba(0,0,0,.05);
+}
+
+.url-div,.error-div {
+  text-overflow: inherit;
+  white-space: nowrap;
+  overflow: auto;
 }

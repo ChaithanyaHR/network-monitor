@@ -8,27 +8,33 @@
     </head>
 
     <body>
-      <div class="main">
-        <div class="heading">
-          <h3 class="title">Network Monitor</h3>
+      <div class="card">
+
+        <div class="header-container">
+          <h3>Network Monitor</h3>
           <div class="toggle-wrapper">
-            <label class="switch">
+            <label class="toggle-label">
               <input type="checkbox" id="stop-button" checked>
-              <div class="toggle"></div>
+              <div class="toggle-button"></div>
             </label>
           </div>
-        <div>
+        </div>
+
+        <div class="error-table">
+          <table>
+            <thead>
+              <tr>
+                <th class="url-header"><div>URL</div></th>
+                <th class="error-header"><div>ERROR</div></th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+
       </div>
 
-      <div class="table">
-        <table>
-          <tr>
-            <th>Url</th>
-            <th>Error</th>
-          </tr>
-        </table>
-      </div>
-
-      <script src="popup.js"></script>
     </body>
+    <script src="popup.js"></script>
   </html>
