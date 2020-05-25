@@ -40,3 +40,12 @@ chrome.runtime.onMessage.addListener(function({isExtensionEnabled}) {
     removeListeners();
   }
 });
+
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  if ( changeInfo.status === 'loading' ) {
+    chrome.storage.local.get(['errorsList'], function({errorsList}) {
+      errorsList[tabId] = [];
+      chrome.storage.local.set({errorsList});
+    });
+  }
+})
